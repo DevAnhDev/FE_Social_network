@@ -1,0 +1,818 @@
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  //stylesheet for the display in Google Chrome
+  &::-webkit-scrollbar {
+    height: $size;
+    width: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: $background-color;
+  }
+
+  // stylesheet for the display in Internet Explorer
+  & {
+    scrollbar-track-color: $background-color;
+    scrollbar-face-color: $foreground-color;
+  }
+}
+@mixin selectButtonClose {
+  .select{
+    text-align: center;
+    p {
+      margin-top: 5px;
+    }
+    button{
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      padding: 5px 10px;
+      color: white;
+      font-size: 20px;
+      border-width: 0;
+    }
+    .btn_Reject{
+      background-color:red;
+      & :hover{
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+.wrapperMessenger {
+    min-height:84vh;
+    .chat {
+        min-height:84vh;
+        max-height: 84vh;
+        width:100%;
+        border-left: .5px solid rgba(170, 170, 170,.5);
+        .infor{
+            background-color:$color_white;
+            height:60px;
+            box-shadow: 0 5px 5px -5px rgb(192, 192, 192);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .right{
+              display: flex;
+              flex-direction: row;
+              margin-right: 20px;
+              font-size: 22px;
+              color:$color_primary;
+              .btn{
+                padding: 5px 10px;
+                border-radius: 50px;
+                cursor: pointer;
+                &:hover{
+                  background-color:rgba(218, 218, 218,.7);
+                }
+              }
+            }
+            .left {
+              margin-left: 10px;
+              display: flex;
+              flex-direction: row;
+              text-align: center;
+              .online{
+                @include onlineCustom;
+                left:55px;
+              }
+              .avatar{
+                width:40px;
+                height:40px;
+                margin-left: 20px;
+                border-radius: 50px;
+                margin-right: 0px;
+                cursor: pointer;
+              }
+              span {
+                font-size: 18px;
+                margin-left: 10px;
+                font-weight: 600;
+              }
+            }
+        }
+        .chat-message{
+            @include scrollbars(5px, $color_black, $yellowColor);
+            height: 80%;
+            display: flex;
+            overflow-y: auto;
+            align-content: flex-start;
+            width: 100%;
+            flex-direction: column;
+            word-wrap: break-word;
+            .btn_call_again{
+              display: block;
+              span{
+                padding:0 !important;
+                color:black !important;
+                font-size: 12px !important;
+                font-weight: 500 !important;
+              }
+            }
+            .time{
+              span{
+                font-weight: 400 !important;
+                font-size: 10px !important;
+                word-spacing: 1px;
+                padding-left: 0 !important;
+              }
+            }
+            .null-mess{
+              width:100%;
+              text-align: center;
+              padding-top: 20px;
+              display: relative;
+              .avatar{
+                width:100px;
+                height:100px;
+                border-radius: 50px;
+              }
+              .online{
+                @include onlineCustom;
+                top:67%;
+                left:54%;
+              }
+              p{
+                font-weight: bold;
+                font-size: 15px;
+                margin-top: 10px;
+              }
+            }
+            .message {
+                padding-left: 20px;
+                max-width: 220px;
+                margin-left: 0px;
+                margin-right: auto;
+                p {
+                  color: #b4b6be;
+                  font-size: 1rem;
+                  font-weight: 300;
+                  background-color: #250202;
+                  border-radius: 0px 10px 10px 10px;
+                  padding: 1rem;
+                  margin-top: 16px;
+                  margin-bottom: 0px;
+                }
+          
+                span {
+                  color: #b4b6be;
+                  font-size: 0.6rem;
+                  padding-left: 0.5rem;
+                  font-weight: 400;
+                }
+                .file{
+                  display: flex;
+                  flex-direction:row;
+                  align-items: center;
+                  button{
+                    width:10%;
+                    display:flex;
+                    justify-content:center;
+                    align-items: center;
+                    border: 0;
+                    width:30px;
+                    height:30px;
+                    cursor: pointer;
+                    .anticon{
+                      color: black;
+                      font-size:16px;
+                      padding:0;
+                    }
+                  }
+                }
+            }
+            .mess-right {
+                display: flex;
+                margin-left: auto;
+                flex-direction: row;
+                padding-right: 0.5rem;
+                margin-right: 0px;
+                max-width: 270px;
+                justify-content: center;
+                .time{
+                  font-weight: 500 !important;
+                  font-size: 14px;
+                  span{
+                    color: white;
+                    padding: 0 !important;
+                  } 
+                }
+                .btn_call_again{
+                  margin-right: 0px;
+                  margin-left: auto;
+                  .anticon-video-camera{
+                    width:10px;
+                  }
+                  span{
+                    margin: 0 !important;
+                  }
+                }
+                .file{
+                  button{
+                    span{
+                      text-align: center;
+                    }
+                    margin-right: 0;
+                    margin-left: auto;
+                  }
+                }
+                .text {
+                  display: flex;
+                  margin-left: auto;
+                  flex-direction: column;
+                  p {
+                    background-color: $redColor;
+                    text-align: end;
+                    color: white;
+                    max-width: 200px;
+                    border-radius: 10px 0px 10px 10px;
+                    margin-right: 0px;
+                    margin-top: 16px;
+                    margin-bottom: 0px;
+                  }
+                  span {
+                    padding-left: 0rem;
+                    width: 100%;
+                    padding-right: 0.5rem;
+                    text-align: end;
+                  }
+                }
+                .null_avatar{
+                  width:30px;
+                  height:30px;
+                  margin-left: 5px;
+                }
+                .infor_mess{
+                  display: flex;
+                  flex-direction:column;
+                  text-align: center;
+                  padding-left: 5px;
+                  padding-top: 3px;
+                  .avatar{
+                    width:30px;
+                    height:30px;
+                    border-radius: 50px;
+                    cursor: pointer;
+                  }
+                  span{
+                    padding: 0;
+                    color:black;
+                  }
+                }
+              
+            }
+        }
+        .send {
+            height: 50px;
+            display: flex;
+            width: 100%;
+            padding-left: 20px;
+            color: $color_white;
+            position: relative;
+            .wrapperEmoji{
+              position: absolute;
+              right:9%;
+              top:-330px;
+              animation: showEmoji 1s ease-in ;
+            }
+            input {
+              background-color: #404450;
+              width: 85%;
+              padding-left: 1rem;
+              text-decoration: none;
+              border-radius: 5px 0px 0px 5px;
+              border: none;
+              &:focus {
+                outline: none;
+              }
+            }
+            .btn_emoji{
+              width:50px;
+              height:50px;
+              border-radius:10px;
+              color: white;
+              background-color: $yellowColor;
+              font-size: 24px;
+              cursor: pointer;
+              border: none;
+              margin-left: 5px;
+            }
+            .btn_sendImg {
+              width: 5%;
+              display: flex;
+              flex-direction: column;
+              justify-content:center;
+              align-items: center;
+              margin-left: 5px;
+              position: relative;
+              .ant-upload-select{
+                position: absolute;
+                order:1;
+                bottom: 0;
+              }
+              .btn_up{
+                width:40px;
+                height:50px;
+                border-radius:10px;
+                color: white;
+                background-color: $yellowColor;
+                font-size: 24px;
+                cursor: pointer;
+                border: none;
+              }
+              .ant-upload-list{
+                position: absolute;
+                order: 0;
+                bottom: 50px;
+                right:0;
+                button{
+                  width:40px;
+                  height:40px;
+                  border-radius:10px;
+                  color: white;
+                  background-color: $yellowColor;
+                  font-size: 24px;
+                  cursor: pointer;
+                  border: none;
+                }
+              }
+            }
+            .btn_send {
+                background-color: $yellowColor;
+                width: 15%;
+                border-radius: 0px 5px 5px 0px;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                .anticon{
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    .chat-null{
+        min-height:85vh;
+        max-height: 85vh;
+        width:100%;
+        border-left: .5px solid rgba(170, 170, 170,.5);
+        display: flex;
+        align-items: center;
+        justify-content:center
+    }
+    .left_chat{
+      overflow-x: hidden;
+      display: relative;
+      @include scrollbars(3px, gray, $background_color);
+      .top{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        align-items: center;
+        h2{
+          margin: 0px;
+        }
+        .top-right{
+          display: flex;
+          font-size: 20px;
+          flex-direction:row;
+          margin-right: 10px;
+          .btn{
+            padding: 5px 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            &:hover{
+              background-color:rgba(218, 218, 218,.7);
+            }
+          }
+        }
+      }
+      .list_user{
+        transform : translateX(0%);
+        transition: all 1s ease;
+        overflow-y: auto;
+        padding-top: 1vh;
+        max-height: 76vh;
+        @include scrollbars(3px, gray, $background_color);
+        // @include scrollbars(3px, gray, $background_color);
+        .item_user{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width:96%;
+          padding: 10px 10px !important;
+          margin-left: 8px;
+          @include card;
+          cursor: pointer;
+          margin-bottom: 20px;
+          .avatar{
+            width:50px;
+            height:50px;
+            margin-left: 15px;
+            border-radius: 50px;
+            margin-right: 0px;
+            cursor: pointer;
+          }
+          .online{
+            @include onlineCustom;
+            left:55px;
+          }
+          .infor{
+            margin-left: 25px;
+            margin-right: 0px;
+            width:100%;
+            h3{
+              font-weight: bold;
+            }
+            .bottomInfor{
+              display: flex;
+              flex-direction:row;
+              width:100%;
+              justify-content: space-between;
+              span{
+                margin-left: 20px;
+                font-size: 12px;
+                text-align: center;
+                color: gray;
+                margin-top: 2px;
+                margin-right: 0px;
+              }
+            }
+            p{
+              font-size: 14px;
+              margin:0px;
+            }
+          }
+        }
+
+        .inputSearch{
+          margin-bottom: 10px;
+          margin-left: 5%;
+          width: 90%;
+          input{
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+          .ant-input-group-addon{
+            background-color: $color_white;
+            button {
+                border-top-right-radius: 10px !important;
+                border-bottom-right-radius: 10px !important;
+                span{
+                    color:gray;
+                }
+            }
+          }
+        }
+      
+      }
+      .list_friend{
+        width:100%;
+        position: absolute;
+        top:50px;
+        transform : translateX(-150%);
+        transition: all 1s ease;
+        padding-right: 15px;
+        .inputSearch{
+          margin-bottom: 10px;
+          margin-left: 5px;
+          input{
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+          .ant-input-group-addon{
+            background-color: $color_white;
+            button {
+                border-top-right-radius: 10px !important;
+                border-bottom-right-radius: 10px !important;
+                span{
+                    color:gray;
+                }
+            }
+          }
+        }
+        .itemContact{
+          padding-top: 5px;
+          margin-bottom: 25px;
+          padding-bottom: 5px;
+          border-radius: 10px;
+          display: flex;
+          flex-direction: row;
+          position:relative;
+          border-bottom: .2px solid rgba(139, 139, 139,.3);
+          cursor: pointer;
+          .avatar{
+            width:50px;
+            height:50px;
+            margin-left: 10px;
+            border-radius: 50px;
+            margin-right: 0;
+            cursor: pointer;
+          }
+          .name{
+            font-size: 16px;
+            margin-left: 15px;
+            font-weight: bold;
+          }
+          .online{
+              @include onlineCustom;
+              bottom: 7px;
+          }
+          .lastLogin{
+            position: absolute;
+            left: 75px;
+            bottom: 5px;
+            font-size: 13px;
+          }
+          &:hover{
+            background-color:rgba(145, 145, 145 , .5);
+          }
+      }
+      }
+    }
+}
+
+.groupTopModal{
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  .inputNameGroup{
+    border-radius: 20px !important;
+    height:40px !important
+  }
+  .btnAdd{
+    margin-left: 10px;
+    border-radius: 10px;
+  }
+}
+
+.itemAddFriend{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  .avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    margin-right: 20px;
+  }
+  .name{
+    margin:0 !important;
+    p{
+      margin:0 !important;
+      font-weight: bold;
+    }
+  }
+}
+
+.ant-modal-body{
+  @include scrollbars(5px, $yellowColor, $background_color);
+  .tabsettingChatModal{
+    .avatar{
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+
+.wrapperVideoCall{
+  position: relative;
+  padding-top: 25px;
+  height: auto;
+  min-height:200px;
+  overflow-x: hidden;
+  .calling {
+    h2 {
+      margin-bottom: 15px;
+    }
+    text-align: center;
+    @include selectButtonClose;
+  }
+  .rejectCall{
+    text-align: center;
+    @include selectButtonClose;
+  }
+  .video{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+  .myVideoMain{
+    margin-top: 2px;
+  }
+ 
+  .myVideo{
+    width: 40%;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    transition: all 1s ease;
+    button {
+      text-align:center;
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      width:10px;
+      position: absolute;
+      left:-10px;
+      top:55px;
+      border-width: 0;
+      font-size: 12px;
+      z-index: 10;
+      border-radius: 10px;
+    }
+    video{
+      border-top-left-radius:10px;
+      border-bottom-left-radius: 10px;
+    }
+  }
+
+  .videoUser{
+    width:100%;
+    height:100%;
+    .userVideo{
+      width:100%;
+      height:50vh;
+    }
+  }
+
+  audio{
+    display: none;
+  }
+
+  .caller{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .groupBtn_ReceivingCall{
+      display: flex;
+      flex-direction:row;
+      justify-content:space-around;
+      width:60%;
+      padding-top: 20px;
+      .select{
+        text-align: center;
+        p {
+          margin-top: 5px;
+        }
+      }
+      button{
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        padding: 5px 10px;
+        color: white;
+        font-size: 20px;
+        border-width: 0;
+      }
+      .btn_Reject{
+        background-color:red;
+        & :hover{
+          border-width: 1px;
+        }
+      }
+      .btn_Accept{
+        background-color: rgb(50, 190, 50);
+        & :hover{
+          border-width: 1px;
+        }
+      }
+    }
+  }
+
+  .callAccepted{
+    padding-top: 20px;
+    .group_btn{
+      display:flex;
+      flex-direction:row;
+      justify-content: center;
+      .select{
+        padding-left: 10px;
+        text-align: center;
+        p {
+          margin-top: 5px;
+        }
+        button{
+          width: 50px;
+          height: 50px;
+          border-radius: 50px;
+          padding: 5px 10px;
+          color: white;
+          font-size: 20px;
+          border-width: 0;
+        }
+        .btn_Close{
+          background-color:red;
+          & :hover{
+            border-width: 1px;
+          }
+        }
+        .btn_FullScreen{
+          background-color:gray;
+        }
+      }
+    }
+   
+  }
+}
+
+.modal_tab_file{
+  .btn_dowloadFile{
+    
+  }
+  .imgDetail{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+}
+
+@media only screen and (max-width:660px) {
+  .wrapperMessenger {
+    .left_chat{
+      order:1
+    }
+    .chat{
+      order: 0;
+    }
+    .send {
+      input{
+        width:60% !important;
+      }
+      button{
+        width:20% !important;
+        .anticon{
+          font-size: 18px !important; 
+        }
+      }
+      .btn_emoji{
+        width:50px !important;
+      }
+      .btn_sendImg {
+        width:10% !important;
+        .btn_up{
+          width: 40px !important;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px){
+  .wrapperMessenger {
+    .chat{
+      .infor{
+        .left{
+          .avatar{
+            width: 30px;
+            height:30px;
+          }
+          .online{
+            left:40px;
+            width: 8px;
+            height: 8px;
+          }
+          span{
+            font-size: 15px;
+          }
+        }
+        .right{
+          margin-right:0px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes showEmoji {
+  from{
+    top:-280px;
+    opacity:0;
+  }to{
+    top:-330px;
+    opacity:1;
+  }
+}
+
+@keyframes hideEmoji {
+  from{
+    top:-330px;
+    opacity:1;
+  }to{
+    top:-280px;
+    opacity:0;
+  }
+}
+

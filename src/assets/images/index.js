@@ -1,0 +1,6 @@
+export {default as like} from './like.png'
+export {default as love} from './love.png'
+export {default as haha} from './haha.png'
+export {default as sad} from './sad.png'
+export {default as wow} from './wow.png'
+export {default as angry} from './angry.png'

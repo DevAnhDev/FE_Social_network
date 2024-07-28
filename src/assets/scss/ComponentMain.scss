@@ -1,0 +1,201 @@
+@mixin card {
+    background-color: $color_white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 3px 20px !important;
+    border-radius: 10px;
+    padding: 10px 0px;
+}
+@mixin onlineCustom {
+    width:10px;
+    height:10px;
+    background-color: rgb(16, 187, 16);
+    border-radius:20px;
+    position: absolute;
+    bottom:0;
+    left:45px;
+}
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  //stylesheet for the display in Google Chrome
+  &::-webkit-scrollbar {
+    height: $size;
+    width: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: $background-color;
+  }
+
+  // stylesheet for the display in Internet Explorer
+  & {
+    scrollbar-track-color: $background-color;
+    scrollbar-face-color: $foreground-color;
+  }
+}
+
+.wrapperLeft {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+    width:100%;
+    height:600px;
+    padding:0px 20px;
+    .infor{
+        @include card;  
+        cursor: pointer;
+        padding: 15px 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+        background-image: linear-gradient(to right,#8b8efa,#fd8eff);
+        .avatar{
+            width:60px;
+            height:60px;
+            border-radius: 15px;
+        }
+        .lable{
+            margin-left: 15px;
+            display:flex;
+            flex-direction: column;
+            justify-content:center;
+        }
+        .name{
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .username{
+            font-style: italic;
+            color: white;
+            margin: 0;
+        }
+    }
+    .navMenu{
+        @include card;
+        width: 100%;
+        font-weight: bold;
+        .ant-menu-item {
+            .anticon {
+                font-size: 20px;
+                margin-right: 10px;
+                color: gray;
+            }
+            &:hover{
+                .anticon {
+                    color: $color_primary;
+                }
+            }
+        }   
+        .ant-menu-item-selected {
+            background-color: $background_color !important;
+            color: $color_primary;
+            .anticon {
+                color: $color_primary;
+            }
+            &::before {
+                content:'';
+                background-color: $color_primary;
+                height:100%;
+                width: 4px;
+                position: absolute;
+                left:0
+            }
+        }
+    }
+    
+}
+
+.wrapperRight {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+    width:100%;
+    padding:0px 20px;
+    .wrapperContact{
+        max-height: 43vh;
+        overflow-y: auto;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        @include scrollbars(3px, $yellowColor, $background_color);
+        @include card;
+        padding:10px 20px;
+        .wrapper_btn {
+            width: 100%;
+            text-align: center;
+            padding-top: 20px;
+            .btn_find_friend{
+                border:0;
+                padding:10px 20px;
+                background-color: $color_primary;
+                color:$color_white;
+                border-radius:10px;
+                cursor: pointer;
+            }
+        }
+        
+    }
+    .itemContact{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        position:relative;
+        .avatar{
+            width:40px;
+            height:40px;
+            margin-left: 10px;
+            border-radius: 10px;
+            margin-right: 0;
+            cursor: pointer;
+        }
+        .name{
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        .online{
+            @include onlineCustom;
+        }
+        .lastLogin{
+            position: absolute;
+            left: 65px;
+            bottom: 0;
+            font-size: 12px;
+        }
+    }
+    .requestToAddRefriend{
+        @include card;
+        margin-bottom: 20px;
+        .nullRequest{
+            padding-left: 20px;
+        }
+        .itemContact{
+            padding-left: 10px;
+            flex-direction:column;
+            .infor{
+                display:flex;
+                flex-direction:row;
+            }
+            .group_btn_ask{
+                display: flex;
+                flex-direction:row;
+                justify-content:space-around;
+                button{
+                    width:80px;
+                    border-radius: 10px;
+                }
+            }
+        }
+        h3{
+            margin-left: 20px;
+        }
+    }
+}
